@@ -1,0 +1,29 @@
+{
+  "name": "all-example",
+  "version": "0.0.1",
+  "dependencies": {
+    "menu-lib": "git+https://menu-services:nZhCP-rFxQxtm4aM6-uS@gitlab.digitalplanet.com.tr/digitalplanet/research/frontend/menu-service#feature/TEK-28-Frontend-Menu-Service-Library",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "react-icons": "^4.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

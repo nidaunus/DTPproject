@@ -1,0 +1,6 @@
+rootProject.name = 'frontend-test'
+include 'frontend-test-api'
+include 'frontend-test-service'
+include 'frontend-test-controller'
+include 'frontend-test-cmd'
+include 'frontend-test-k8s'

@@ -1,0 +1,77 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
+    id 'com.palantir.jacoco-coverage' version '0.4.0' apply false
+}
+
+subprojects {
+    apply plugin:'io.spring.dependency-management'
+    apply plugin:'com.palantir.jacoco-coverage'
+    apply plugin:'java'
+    apply plugin:'idea'
+
+    group 'com.digitalplanet.research'
+    version '1.0.1'
+
+    sourceCompatibility = 14
+    targetCompatibility = 14
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0.7
+                }
+            }
+        }
+    }
+    check.dependsOn jacocoTestCoverageVerification
+
+    repositories {
+        mavenLocal()
+        maven {
+            url 'http://artifactory.digitalplanet.com.tr:8083/artifactory/releases'
+            credentials {
+                  username 'developer'
+                  password '12345678'
+            }
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom('org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR8')
+            mavenBom('org.springframework.boot:spring-boot-starter-parent:2.3.4.RELEASE')
+        }
+        dependencies {
+            dependency('org.projectlombok:lombok:1.18.16')
+            dependency('io.springfox:springfox-swagger2:3.0.0')
+            dependency('org.springframework.cloud:spring-cloud-starter-kubernetes-all:1.1.6.RELEASE')
+        }
+    }
+
+    dependencies {
+        implementation('org.projectlombok:lombok')
+        implementation('org.springdoc:springdoc-openapi-data-rest:1.2.32')
+        implementation('org.springdoc:springdoc-openapi-ui:1.2.32')
+        annotationProcessor('org.projectlombok:lombok')
+        testAnnotationProcessor('org.projectlombok:lombok')
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude(group: 'org.junit.vintage', module: 'junit-vintage-engine')
+            exclude(group: 'junit', module: 'junit')
+        }
+        testImplementation('org.junit.jupiter:junit-jupiter-api')
+        testImplementation('org.junit.jupiter:junit-jupiter-params')
+        testRuntime('org.junit.jupiter:junit-jupiter-engine')
+        compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+
+
+
+    }
+}

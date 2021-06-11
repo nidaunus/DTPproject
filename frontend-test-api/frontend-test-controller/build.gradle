@@ -1,0 +1,10 @@
+plugins {
+    id 'java-library'
+}
+
+
+dependencies {
+    api project(':frontend-test-service')
+    api('io.springfox:springfox-swagger2')
+    testImplementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+}

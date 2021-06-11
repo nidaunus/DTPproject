@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: frontend-test
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: event
+      discovery:
+        all-namespaces: true
+      config:
+        sources:
+        - name: ${spring.application.name}-config
+
+management:
+  endpoint:
+    refresh:
+      enabled: true
+    restart:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

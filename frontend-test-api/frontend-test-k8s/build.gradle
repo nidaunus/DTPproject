@@ -1,0 +1,16 @@
+plugins {
+    id 'com.bmuschko.docker-spring-boot-application' version '6.6.1'
+}
+
+docker {
+    springBootApplication {
+        baseImage = 'gitlab.digitalplanet.com.tr:5005/digitalplanet/development/openjdk-jre:14'
+        images = ["gitlab.digitalplanet.com.tr:5005/${project.group}.${project.name}:${project.version}"]
+    }
+}
+
+dependencies {
+    implementation project(':frontend-test-controller')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation('org.springframework.cloud:spring-cloud-starter-kubernetes-all')
+}
